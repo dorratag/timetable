@@ -1,0 +1,93 @@
+<div class="container mt-4">
+    <h2>Subjects</h2>
+    
+    <!-- Button to open the Add Subject modal -->
+    <button class="btn btn-primary mb-3" (click)="openAddModal()">Add Subject</button>
+  
+    <!-- Subjects Table -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of subjects">
+          <td>{{ subject.id }}</td>
+          <td>{{ subject.name }}</td>
+          <td>{{ subject.code }}</td>
+          <td>
+            <!-- Edit button (opens Edit Subject modal) -->
+            <button class="btn btn-warning" (click)="openEditModal(subject)">Edit</button>
+            
+            <!-- Delete button (deletes the subject) -->
+            <button class="btn btn-danger" (click)="deleteSubject(subject.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Add Subject Modal -->
+  <div class="modal fade" id="addSubjectModal" tabindex="-1" aria-labelledby="addSubjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSubjectModalLabel">Add Subject</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="subjectId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="subjectId" [(ngModel)]="newSubject.id" placeholder="Enter subject's ID">
+          </div>
+          <div class="mb-3">
+            <label for="subjectName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="subjectName" [(ngModel)]="newSubject.name" placeholder="Enter subject's name">
+          </div>
+          <div class="mb-3">
+            <label for="subjectCode" class="form-label">Code</label>
+            <input type="text" class="form-control" id="subjectCode" [(ngModel)]="newSubject.code" placeholder="Enter subject's code">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addSubject()">Save Subject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Edit Subject Modal -->
+  <div class="modal fade" id="editSubjectModal" tabindex="-1" aria-labelledby="editSubjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editSubjectModalLabel">Edit Subject</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="editSubjectId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="editSubjectId" [(ngModel)]="selectedSubject.id" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="editSubjectName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="editSubjectName" [(ngModel)]="selectedSubject.name" placeholder="Enter subject's name">
+          </div>
+          <div class="mb-3">
+            <label for="editSubjectCode" class="form-label">Code</label>
+            <input type="text" class="form-control" id="editSubjectCode" [(ngModel)]="selectedSubject.code" placeholder="Enter subject's code">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateSubject()">Update Subject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

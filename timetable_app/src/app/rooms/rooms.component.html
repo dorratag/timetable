@@ -1,0 +1,93 @@
+<div class="container mt-4">
+    <h2>Rooms</h2>
+    
+    <!-- Button to open the Add Room modal -->
+    <button class="btn btn-primary mb-3" (click)="openAddModal()">Add Room</button>
+  
+    <!-- Rooms Table -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Capacity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of rooms">
+          <td>{{ room.id }}</td>
+          <td>{{ room.name }}</td>
+          <td>{{ room.capacity }}</td>
+          <td>
+            <!-- Edit button (opens Edit Room modal) -->
+            <button class="btn btn-warning" (click)="openEditModal(room)">Edit</button>
+            
+            <!-- Delete button (deletes the room) -->
+            <button class="btn btn-danger" (click)="deleteRoom(room.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Add Room Modal -->
+  <div class="modal fade" id="addRoomModal" tabindex="-1" aria-labelledby="addRoomModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addRoomModalLabel">Add Room</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="roomId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="roomId" [(ngModel)]="newRoom.id" placeholder="Enter room's ID">
+          </div>
+          <div class="mb-3">
+            <label for="roomName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="roomName" [(ngModel)]="newRoom.name" placeholder="Enter room's name">
+          </div>
+          <div class="mb-3">
+            <label for="roomCapacity" class="form-label">Capacity</label>
+            <input type="number" class="form-control" id="roomCapacity" [(ngModel)]="newRoom.capacity" placeholder="Enter room's capacity">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addRoom()">Save Room</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Edit Room Modal -->
+  <div class="modal fade" id="editRoomModal" tabindex="-1" aria-labelledby="editRoomModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editRoomModalLabel">Edit Room</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="editRoomId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="editRoomId" [(ngModel)]="selectedRoom.id" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="editRoomName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="editRoomName" [(ngModel)]="selectedRoom.name" placeholder="Enter room's name">
+          </div>
+          <div class="mb-3">
+            <label for="editRoomCapacity" class="form-label">Capacity</label>
+            <input type="number" class="form-control" id="editRoomCapacity" [(ngModel)]="selectedRoom.capacity" placeholder="Enter room's capacity">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateRoom()">Update Room</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

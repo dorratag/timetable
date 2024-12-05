@@ -1,0 +1,75 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">Timetable App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto"> <!-- mr-auto pushes items to the right -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/teachers">Teachers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/subjects">Subjects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/classes">Classes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/rooms">Rooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sessions">Sessions</a>
+        </li>
+      </ul>
+  
+      <!-- Username and Logout at the far right -->
+      <ul class="navbar-nav ms-auto"> <!-- ml-auto to push to the far right -->
+        <li class="nav-item align-self-center">
+          <span class="navbar-text text-primary">
+            {{ getUsername() }}
+          </span>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-primary ms-2" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  
+  
+
+  <div class="container mt-4">
+    <h2>Timetable</h2>
+    
+    <!-- Timetable Table -->
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Time</th>
+          <th scope="col" *ngFor="let day of days" class="text-center">{{ day }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through time slots -->
+        <tr *ngFor="let time of timeSlots">
+          <td class="text-center">{{ time }}</td>
+          
+          <!-- Loop through days for each time slot -->
+          <td *ngFor="let day of days">
+            <!-- ng-container to handle *ngIf and *ngFor together -->
+            <ng-container *ngFor="let session of timetable[day]">
+              <div *ngIf="session.time === time" class="session">
+                <div class="session-item">
+                  <strong>{{ session.subject }}</strong> <br />
+                  <span>{{ session.teacher }} | {{ session.room }} | {{ session.className }}</span>
+                </div>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

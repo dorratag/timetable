@@ -1,0 +1,111 @@
+{
+  "classes": [
+    {
+      "id": "1",
+      "name": "DSI"
+    },
+    {
+      "id": "2",
+      "name": "RSI"
+    },
+    {
+      "id": "3",
+      "name": "MDW"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "1",
+      "class_id": "1",
+      "subject_id": "1",
+      "teacher_id": "1",
+      "room_id": "1",
+      "beginTime": "08:00",
+      "endTime": "10:00",
+      "day": "Saturday"
+    },
+    {
+      "id": "2",
+      "class_id": "2",
+      "subject_id": "2",
+      "teacher_id": "2",
+      "room_id": "2",
+      "beginTime": "10:00",
+      "endTime": "11:00",
+      "day": "Monday"
+    },
+    {
+      "id": "3",
+      "class_id": "3",
+      "subject_id": "2",
+      "teacher_id": "2",
+      "room_id": "2",
+      "beginTime": "09:00",
+      "endTime": "10:00",
+      "day": "Saturday"
+    },
+    {
+      "id": "2",
+      "class_id": "2",
+      "subject_id": "2",
+      "teacher_id": "2",
+      "room_id": "2",
+      "beginTime": "11:00",
+      "endTime": "12:00",
+      "day": "Thursday"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "1",
+      "name": "Mr. Ahme"
+    },
+    {
+      "id": "2",
+      "name": "Mr. Abdelkader"
+    },
+    {
+      "id": "3",
+      "name": "Mr. Oussema"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "1",
+      "name": "Room 101",
+      "capacity": 30
+    },
+    {
+      "id": "2",
+      "name": "Room 102",
+      "capacity": 25
+    },
+    {
+      "id": "3",
+      "name": "Room 303",
+      "capacity": 40
+    }
+  ],
+  "subjects": [
+    {
+      "id": "1",
+      "name": "Mathematics",
+      "code": "MATH101"
+    },
+    {
+      "id": "2",
+      "name": "Physics",
+      "code": "PHYS101"
+    },
+    {
+      "id": "3",
+      "name": "Cloud",
+      "code": "CLD"
+    },
+    {
+      "id": "4",
+      "name": "Machine Learning",
+      "code": "ML"
+    }
+  ]
+}

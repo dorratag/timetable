@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <h2>Teachers</h2>
+
+  <!-- Button to open the Add Teacher modal -->
+  <button class="btn btn-primary mb-3" (click)="openAddModal()">Add Teacher</button>
+
+  <!-- Teachers Table -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of teachers">
+        <td>{{ teacher?.id }}</td> <!-- Safe check with optional chaining -->
+        <td>{{ teacher?.name || 'No name' }}</td> <!-- Safe check with optional chaining -->
+        <td>
+          <!-- Edit button (opens Edit Teacher modal) -->
+          <button class="btn btn-warning" (click)="openEditModal(teacher)">Edit</button>
+          
+          <!-- Delete button (deletes the teacher) -->
+          <button class="btn btn-danger" (click)="deleteTeacher(teacher?.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add Teacher Modal -->
+<div class="modal fade" id="addTeacherModal" tabindex="-1" aria-labelledby="addTeacherModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTeacherModalLabel">Add Teacher</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="teacherName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="teacherName" [(ngModel)]="newTeacher.name" placeholder="Enter teacher's name">
+        </div>
+        <div class="mb-3">
+          <label for="teacherId" class="form-label">ID</label>
+          <input type="text" class="form-control" id="teacherId" [(ngModel)]="newTeacher.id" placeholder="Enter teacher's ID">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addTeacher()">Save Teacher</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Teacher Modal -->
+<div class="modal fade" id="editTeacherModal" tabindex="-1" aria-labelledby="editTeacherModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTeacherModalLabel">Edit Teacher</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="editTeacherName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="editTeacherName" [(ngModel)]="selectedTeacher.name" placeholder="Edit teacher's name">
+        </div>
+        <div class="mb-3">
+          <label for="editTeacherId" class="form-label">ID</label>
+          <input type="text" class="form-control" id="editTeacherId" [(ngModel)]="selectedTeacher.id" disabled>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateTeacher()">Update Teacher</button>
+      </div>
+    </div>
+  </div>
+</div>

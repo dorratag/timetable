@@ -1,0 +1,149 @@
+<div class="container mt-4">
+    <h2>Sessions</h2>
+  
+    <!-- Button to open the Add Session modal -->
+    <button class="btn btn-primary mb-3" (click)="openAddModal()">Add Session</button>
+  
+    <!-- Sessions Table -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Class ID</th>
+          <th>Subject ID</th>
+          <th>Teacher ID</th>
+          <th>Room ID</th>
+          <th>Begin Time</th>
+          <th>End Time</th>
+          <th>Day</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let session of sessions">
+          <td>{{ session.id }}</td>
+          <td>{{ session.class_id }}</td>
+          <td>{{ session.subject_id }}</td>
+          <td>{{ session.teacher_id }}</td>
+          <td>{{ session.room_id }}</td>
+          <td>{{ session.beginTime }}</td>
+          <td>{{ session.endTime }}</td>
+          <td>{{ session.day }}</td>
+          <td>
+            <!-- Edit button (opens Edit Session modal) -->
+            <button class="btn btn-warning" (click)="openEditModal(session)">Edit</button>
+  
+            <!-- Delete button (deletes the session) -->
+            <button class="btn btn-danger" (click)="deleteSession(session.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Add Session Modal -->
+  <div class="modal fade" id="addSessionModal" tabindex="-1" aria-labelledby="addSessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSessionModalLabel">Add Session</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="sessionId" class="form-label">Session ID</label>
+            <input type="text" class="form-control" id="sessionId" [(ngModel)]="newSession.id" placeholder="Enter session ID">
+          </div>
+          <div class="mb-3">
+            <label for="sessionClassId" class="form-label">Class ID</label>
+            <input type="text" class="form-control" id="sessionClassId" [(ngModel)]="newSession.class_id" placeholder="Enter class ID">
+          </div>
+          <div class="mb-3">
+            <label for="sessionSubjectId" class="form-label">Subject ID</label>
+            <input type="text" class="form-control" id="sessionSubjectId" [(ngModel)]="newSession.subject_id" placeholder="Enter subject ID">
+          </div>
+          <div class="mb-3">
+            <label for="sessionTeacherId" class="form-label">Teacher ID</label>
+            <input type="text" class="form-control" id="sessionTeacherId" [(ngModel)]="newSession.teacher_id" placeholder="Enter teacher ID">
+          </div>
+          <div class="mb-3">
+            <label for="sessionRoomId" class="form-label">Room ID</label>
+            <input type="text" class="form-control" id="sessionRoomId" [(ngModel)]="newSession.room_id" placeholder="Enter room ID">
+          </div>
+          <div class="mb-3">
+            <label for="sessionDay" class="form-label">Day</label>
+            <select class="form-control" id="sessionDay" [(ngModel)]="newSession.day">
+              <option *ngFor="let day of daysOfWeek" [value]="day">{{ day }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="sessionBeginTime" class="form-label">Begin Time</label>
+            <input type="time" class="form-control" id="sessionBeginTime" [(ngModel)]="newSession.beginTime" min="08:00" max="16:00">
+          </div>
+          <div class="mb-3">
+            <label for="sessionEndTime" class="form-label">End Time</label>
+            <input type="time" class="form-control" id="sessionEndTime" [(ngModel)]="newSession.endTime" min="08:00" max="16:00">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addSession()">Save Session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ <!-- Edit Session Modal -->
+<div class="modal fade" id="editSessionModal" tabindex="-1" aria-labelledby="editSessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editSessionModalLabel">Edit Session</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="editSessionId" class="form-label">Session ID</label>
+            <input type="text" class="form-control" id="editSessionId" [(ngModel)]="selectedSession.id" placeholder="Enter session ID" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="editSessionClassId" class="form-label">Class ID</label>
+            <input type="text" class="form-control" id="editSessionClassId" [(ngModel)]="selectedSession.class_id" placeholder="Enter class ID">
+          </div>
+          <div class="mb-3">
+            <label for="editSessionSubjectId" class="form-label">Subject ID</label>
+            <input type="text" class="form-control" id="editSessionSubjectId" [(ngModel)]="selectedSession.subject_id" placeholder="Enter subject ID">
+          </div>
+          <div class="mb-3">
+            <label for="editSessionTeacherId" class="form-label">Teacher ID</label>
+            <input type="text" class="form-control" id="editSessionTeacherId" [(ngModel)]="selectedSession.teacher_id" placeholder="Enter teacher ID">
+          </div>
+          <div class="mb-3">
+            <label for="editSessionRoomId" class="form-label">Room ID</label>
+            <input type="text" class="form-control" id="editSessionRoomId" [(ngModel)]="selectedSession.room_id" placeholder="Enter room ID">
+          </div>
+          <div class="mb-3">
+            <label for="editSessionDay" class="form-label">Day</label>
+            <select class="form-control" id="editSessionDay" [(ngModel)]="selectedSession.day">
+              <option *ngFor="let day of daysOfWeek" [value]="day">{{ day }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editSessionBeginTime" class="form-label">Begin Time</label>
+            <input type="time" class="form-control" id="editSessionBeginTime" [(ngModel)]="selectedSession.beginTime" min="08:00" max="16:00">
+          </div>
+          <div class="mb-3">
+            <label for="editSessionEndTime" class="form-label">End Time</label>
+            <input type="time" class="form-control" id="editSessionEndTime" [(ngModel)]="selectedSession.endTime" min="08:00" max="16:00">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateSession()">Update Session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 
+  

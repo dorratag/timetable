@@ -1,0 +1,83 @@
+<div class="container mt-4">
+    <h2>Classes</h2>
+  
+    <!-- Button to open the Add Class modal -->
+    <button class="btn btn-primary mb-3" (click)="openAddModal()">Add Class</button>
+  
+    <!-- Classes Table -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let classItem of classes">
+          <td>{{ classItem.id }}</td>
+          <td>{{ classItem.name }}</td>
+          <td>
+            <!-- Edit button (opens Edit Class modal) -->
+            <button class="btn btn-warning" (click)="openEditModal(classItem)">Edit</button>
+  
+            <!-- Delete button (deletes the class) -->
+            <button class="btn btn-danger" (click)="deleteClass(classItem.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Add Class Modal -->
+  <div class="modal fade" id="addClassModal" tabindex="-1" aria-labelledby="addClassModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addClassModalLabel">Add Class</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="classId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="classId" [(ngModel)]="newClass.id" placeholder="Enter class ID">
+          </div>
+          <div class="mb-3">
+            <label for="className" class="form-label">Name</label>
+            <input type="text" class="form-control" id="className" [(ngModel)]="newClass.name" placeholder="Enter class name">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addClass()">Save Class</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Edit Class Modal -->
+  <div class="modal fade" id="editClassModal" tabindex="-1" aria-labelledby="editClassModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editClassModalLabel">Edit Class</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="editClassName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="editClassName" [(ngModel)]="selectedClass.name" placeholder="Edit class name">
+          </div>
+          <div class="mb-3">
+            <label for="editClassId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="editClassId" [(ngModel)]="selectedClass.id" disabled>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateClass()">Update Class</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
